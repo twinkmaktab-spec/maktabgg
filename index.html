@@ -45,7 +45,7 @@
         </a>
         <nav class="nav">
             <a href="index.html" class="nav-item active" data-translate="nav_home">Bosh sahifa</a>
-            <a href="director.html" class="nav-item" data-translate="nav_director">Maktab Administratsiyasi</a>
+            <a href="director.html" class="nav-item" data-translate="nav_director">Direktor</a>
             <a href="yangiliklar.html" class="nav-item" data-translate="nav_news">Yangiliklar</a>
             <a href="about.html" class="nav-item" data-translate="nav_about">O'quv muassasa</a>
             <a href="location.html" class="nav-item" data-translate="nav_location">Joylashuv</a>
@@ -62,12 +62,12 @@
         </div>
     </div>
     <div class="mobile-nav" id="mobileNav">
-      <a href="index.html" class="nav-item active" data-translate="nav_home">Bosh sahifa</a>
-            <a href="director.html" class="nav-item" data-translate="nav_director">Maktab Aministratsiyasi</a>
-            <a href="yangiliklar.html" class="nav-item" data-translate="nav_news">Yangiliklar</a>
-            <a href="about.html" class="nav-item" data-translate="nav_about">O'quv muassasa</a>
-            <a href="location.html" class="nav-item" data-translate="nav_location">Joylashuv</a>
-            <a href="contact.html" class="nav-item nav-cta" data-translate="nav_contact">Bog'lanish</a>
+        <a href="index.html" class="m-nav-item active" data-translate="nav_home">Bosh sahifa</a>
+        <a href="director.html" class="m-nav-item" data-translate="nav_director">Direktor</a>
+        <a href="yangiliklar.html" class="m-nav-item" data-translate="nav_news">Yangiliklar</a>
+        <a href="about.html" class="nav-item" data-translate="nav_about">O'quv muassasa</a>
+        <a href="location.html" class="m-nav-item" data-translate="nav_location">Joylashuv</a>
+        <a href="contact.html" class="m-nav-item" data-translate="nav_contact">Bog'lanish</a>
     </div>
 </header>
 
@@ -253,5 +253,55 @@
 <div id="userInfo"></div>
 
 <script src="user.js"></script>
+<!-- FIREBASE AUTH MODAL -->
+<div class="modal" id="firebaseAuthModal">
+  <div class="modal-overlay" id="firebaseAuthOverlay"></div>
+
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Kirish / Ro'yxatdan o'tish</h3>
+      <button class="modal-close" id="firebaseAuthClose">✕</button>
+    </div>
+
+    <div class="modal-body">
+      <div style="display:flex; gap:10px; margin-bottom:14px;">
+        <button class="btn-outline" type="button" id="fbTabLogin">Kirish</button>
+        <button class="btn-outline" type="button" id="fbTabSignup">Ro'yxatdan o'tish</button>
+      </div>
+
+      <div id="fbMsg" style="display:none; padding:10px 12px; border-radius:10px; margin-bottom:12px;"></div>
+
+      <!-- LOGIN -->
+      <form id="fbLoginForm">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="fbLoginEmail" required placeholder="example@mail.com">
+        </div>
+        <div class="form-group">
+          <label>Parol</label>
+          <input type="password" id="fbLoginPass" required placeholder="******">
+        </div>
+        <button class="btn-primary" type="submit" style="width:100%;justify-content:center;">
+          Kirish
+        </button>
+      </form>
+
+      <!-- SIGNUP -->
+      <form id="fbSignupForm" style="display:none;">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="fbSignupEmail" required placeholder="example@mail.com">
+        </div>
+        <div class="form-group">
+          <label>Parol</label>
+          <input type="password" id="fbSignupPass" required placeholder="min 6 belgidan">
+        </div>
+        <button class="btn-primary" type="submit" style="width:100%;justify-content:center;">
+          Ro'yxatdan o'tish
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
 </body>
 </html>
