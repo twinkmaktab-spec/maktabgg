@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Direktor — 153-Maktab</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header id="header">
+    <div class="header-inner">
+        <a href="index.html" class="logo-wrap">
+            <div class="logo-box"><img src="images/logo.png" alt="Logo"></div>
+            <div class="logo-text">
+                <span class="logo-num">153</span>
+                <span class="logo-sub" data-translate="school_name">Umumta'lim Maktabi</span>
+            </div>
+        </a>
+        <nav class="nav">
+            <a href="index.html" class="nav-item active" data-translate="nav_home">Bosh sahifa</a>
+            <a href="director.html" class="nav-item" data-translate="nav_director">Maktab Administratsiyasi</a>
+            <a href="yangiliklar.html" class="nav-item" data-translate="nav_news">Yangiliklar</a>
+            <a href="about.html" class="nav-item" data-translate="nav_about">O'quv muassasa</a>
+            <a href="location.html" class="nav-item" data-translate="nav_location">Joylashuv</a>
+            <a href="contact.html" class="nav-item nav-cta" data-translate="nav_contact">Bog'lanish</a>
+        </nav>
+        <div class="header-actions">
+            <button class="theme-btn" id="themeBtn">
+                <svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                <svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+            </button>
+            <button class="burger" id="burger"><span></span><span></span><span></span></button>
+        </div>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+        <a href="index.html" class="nav-item active" data-translate="nav_home">Bosh sahifa</a>
+            <a href="director.html" class="nav-item" data-translate="nav_director">Maktab Administratsiyasi</a>
+            <a href="yangiliklar.html" class="nav-item" data-translate="nav_news">Yangiliklar</a>
+            <a href="about.html" class="nav-item" data-translate="nav_about">O'quv muassasa</a>
+            <a href="location.html" class="nav-item" data-translate="nav_location">Joylashuv</a>
+            <a href="contact.html" class="nav-item nav-cta" data-translate="nav_contact">Bog'lanish</a>
+    </div>
+</header>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html" data-translate="nav_home">Bosh sahifa</a>
+            <span>/</span>
+            <span data-translate="nav_director">Direktor</span>
+        </div>
+        <h1 class="page-hero-title">
+            <span data-translate="dir_page_title">Maktab</span>
+            <span class="text-blue" data-translate="dir_page_title_blue">Direktori</span>
+        </h1>
+        <p class="page-hero-desc" data-translate="dir_page_desc">Maktabimiz rahbari haqida to'liq ma'lumot</p>
+    </div>
+</section>
+
+<!-- DIRECTOR CONTENT -->
+<section class="page-content">
+    <div class="container">
+        <div class="director-layout">
+
+            <!-- Photo Side -->
+            <div class="dir-photo-col">
+                <div class="dir-photo-card">
+                    <div class="dir-photo-wrap">
+                        <img src="images/director.jpg" alt="Direktor">
+                    </div>
+                    <div class="dir-photo-info">
+                        <h2 data-translate="dir_name">Boymurzayev Qahramon Zoyirovich</h2>
+                        <p data-translate="dir_position">Maktab Direktori</p>
+                    </div>
+                    <div class="dir-badges">
+                        <div class="dir-badge">
+                            <span class="db-icon">⭐</span>
+                            <div>
+                                <strong>30+</strong>
+                                <span data-translate="stats_years">Yil tajriba</span>
+                            </div>
+                        </div>
+                        <div class="dir-badge">
+                            <span class="db-icon">🎓</span>
+                            <div>
+                                <strong data-translate="dir_edu_level">Oliy</strong>
+                                <span data-translate="dir_edu_label">Ma'lumot</span>
+                            </div>
+                        </div>
+                        <div class="dir-badge">
+                            <span class="db-icon">🏅</span>
+                            <div>
+                                <strong data-translate="dir_honor_level">Faxriy</strong>
+                                <span data-translate="dir_honor_label">O'qituvchi</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="btn-primary" style="width:100%;justify-content:center" data-translate="nav_contact">
+                        Bog'lanish
+                    </a>
+                </div>
+            </div>
+
+            <!-- Info Side -->
+            <div class="dir-info-col">
+                <div class="dir-quote-card">
+                    <div class="dqc-mark">"</div>
+                    <p data-translate="dir_quote">
+                        Aziz o'quvchilar, ota-onalar va hurmatli mehmonlar! Maktabimiz — bu nafaqat bilim olish maskani, balki kelajak avlodning ma'naviy va intellektual shakllanadigan muqaddas dargohidir. Har bir o'quvchimiz — bizning faxrimiz va kelajagimiz. Biz bilan birgalikda buyuk istiqbollarni yaratamiz!
+                    </p>
+                    <div class="dqc-author" data-translate="dir_quote_author">— Boymurzayev Q.Z., Maktab Direktori</div>
+                </div>
+
+                <div class="dir-info-grid">
+                    <div class="dig-card">
+                        <div class="dig-icon">📚</div>
+                        <h4 data-translate="dir_card1_title">Ta'lim yo'nalishi</h4>
+                        <p data-translate="dir_card1_desc">Umumta'lim va chuqurlashtirilgan fanlar bo'yicha kompleks ta'lim berish</p>
+                    </div>
+                    <div class="dig-card">
+                        <div class="dig-icon">🤝</div>
+                        <h4 data-translate="dir_card2_title">Hamkorlik</h4>
+                        <p data-translate="dir_card2_desc">Ota-onalar, o'qituvchilar va o'quvchilar bilan yaqin hamkorlik</p>
+                    </div>
+                    <div class="dig-card">
+                        <div class="dig-icon">🌟</div>
+                        <h4 data-translate="dir_card3_title">Maqsad</h4>
+                        <p data-translate="dir_card3_desc">Har bir o'quvchining iste'dodini ochish va rivojlantirish</p>
+                    </div>
+                    <div class="dig-card">
+                        <div class="dig-icon">📈</div>
+                        <h4 data-translate="dir_card4_title">Yutuqlar</h4>
+                        <p data-translate="dir_card4_desc">Respublika olimpiadalarida muntazam g'alaba qozonish</p>
+                    </div>
+                </div>
+
+                <div class="dir-stats-row">
+                    <div class="dsr-item">
+                        <span class="dsr-num">1200+</span>
+                        <span class="dsr-label" data-translate="stats_students">O'quvchi</span>
+                    </div>
+                    <div class="dsr-item">
+                        <span class="dsr-num">80+</span>
+                        <span class="dsr-label" data-translate="stats_teachers">O'qituvchi</span>
+                    </div>
+                    <div class="dsr-item">
+                        <span class="dsr-num">30+</span>
+                        <span class="dsr-label" data-translate="dir_years_active">Yil faoliyat</span>
+                    </div>
+                    <div class="dsr-item">
+                        <span class="dsr-num">100+</span>
+                        <span class="dsr-label" data-translate="dir_olympiad">Olimpiada</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+ //zauch //
+
+<!-- DIRECTOR CONTENT -->
+<section class="page-content">
+    <div class="container">
+        <div class="director-layout">
+
+            <!-- Photo Side -->
+            <div class="dir-photo-col">
+                <div class="dir-photo-card">
+                    <div class="dir-photo-wrap">
+                        <img src="images/zauch.JPG" alt="Direktor">
+                    </div>
+                    <div class="dir-photo-info">
+                        <h2 >Mirxalikova Santalat Batirovna</h2>
+                        <p >Direktor o‘rinbosari</p>
+                    </div>
+                    <div class="dir-badges">
+                        <div class="dir-badge">
+                            <span class="db-icon">⭐</span>
+                            <div>
+                                <strong>20+</strong>
+                                <span data-translate="stats_years">Yil tajriba</span>
+                            </div>
+                        </div>
+                        <div class="dir-badge">
+                            <span class="db-icon">🎓</span>
+                            <div>
+                                <strong data-translate="dir_edu_level">Oliy</strong>
+                                <span data-translate="dir_edu_label">Ma'lumot</span>
+                            </div>
+                        </div>
+                        <div class="dir-badge">
+                            <span class="db-icon">🏅</span>
+                            <div>
+                                <strong data-translate="dir_honor_level">Faxriy</strong>
+                                <span data-translate="dir_honor_label">O'qituvchi</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="btn-primary" style="width:100%;justify-content:center" data-translate="nav_contact">
+                        Bog'lanish
+                    </a>
+                </div>
+            </div>
+
+            <!-- Info Side -->
+            <div class="dir-info-col">
+                <div class="dir-quote-card">
+                    <div class="dqc-mark">"</div>
+                    <p data-translate="dir_quote">
+                        Aziz o'quvchilar, ota-onalar va hurmatli mehmonlar! Maktabimiz — bu nafaqat bilim olish maskani, balki kelajak avlodning ma'naviy va intellektual shakllanadigan muqaddas dargohidir. Har bir o'quvchimiz — bizning faxrimiz va kelajagimiz. Biz bilan birgalikda buyuk istiqbollarni yaratamiz!
+                    </p>
+                    <div class="dqc-author">— Mirxalikova S.B., Direktor o‘rinbosari</div>
+                </div>
+
+                <div class="dir-info-grid">
+                    <div class="dig-card">
+                        <div class="dig-icon">📚</div>
+                        <h4 data-translate="dir_card1_title">Ta'lim yo'nalishi</h4>
+                        <p >Umumta'lim fanlar boyicha kompleks ta'lim berish</p>
+                    </div>
+                    <div class="dig-card">
+                        <div class="dig-icon">🤝</div>
+                        <h4 data-translate="dir_card2_title">Hamkorlik</h4>
+                        <p >Ota-onalar, o'qituvchilar bilan hamkorlik</p>
+                    </div>
+                    <div class="dig-card">
+                        <div class="dig-icon">🌟</div>
+                        <h4 data-translate="dir_card3_title">Maqsad</h4>
+                        <p >Har bir o'quvchining iste'dodini ochish va rivojlantirish</p>
+                    </div>
+                    <div class="dig-card">
+                        <div class="dig-icon">📈</div>
+                        <h4 data-translate="dir_card4_title">Yutuqlar</h4>
+                        <p >Respublika olimpiadalarida muntazam g'alaba qozonish</p>
+                    </div>
+                </div>
+                
+                <div class="dir-stats-row">
+                  
+        
+                         <div class="dsr-item">
+                        <span class="dsr-num">20+</span>
+                        <span class="dsr-label" data-translate="dir_years_active">Yil faoliyat</span>
+                    </div>
+                    <div class="dsr-item">
+                        <span class="dsr-num">70+</span>
+                        <span class="dsr-label" data-translate="dir_olympiad">Olimpiada</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- DIRECTOR CONTENT -->
+<section class="page-content">
+    <div class="container">
+        <div class="director-layout">
+
+            <!-- Photo Side -->
+            <div class="dir-photo-col">
+                <div class="dir-photo-card">
+                    <div class="dir-photo-wrap">
+                        <img src="images/zauch2.jpg" alt="Direktor">
+                    </div>
+                    <div class="dir-photo-info">
+                        <h2 >Xudoyberdiyeva Umida Akbaraliyevna</h2>
+                        <p >Direktor o‘rinbosari , O'qituvchi</p>
+                    </div>
+                    <div class="dir-badges">
+                        <div class="dir-badge">
+                            <span class="db-icon">⭐</span>
+                            <div>
+                                <strong>25+</strong>
+                                <span data-translate="stats_years">Yil tajriba</span>
+                            </div>
+                        </div>
+                        <div class="dir-badge">
+                            <span class="db-icon">🎓</span>
+                            <div>
+                                <strong data-translate="dir_edu_level">Oliy</strong>
+                                <span data-translate="dir_edu_label">Ma'lumot</span>
+                            </div>
+                        </div>
+                        <div class="dir-badge">
+                            <span class="db-icon">🏅</span>
+                            <div>
+                                <strong data-translate="dir_honor_level">Faxriy</strong>
+                                <span data-translate="dir_honor_label">O'qituvchi</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="btn-primary" style="width:100%;justify-content:center" data-translate="nav_contact">
+                        Bog'lanish
+                    </a>
+                </div>
+            </div>
+
+            <!-- Info Side -->
+            <div class="dir-info-col">
+                <div class="dir-quote-card">
+                    <div class="dqc-mark">"</div>
+                    <p data-translate="dir_quote">
+                        Aziz o'quvchilar, ota-onalar va hurmatli mehmonlar! Maktabimiz — bu nafaqat bilim olish maskani, balki kelajak avlodning ma'naviy va intellektual shakllanadigan muqaddas dargohidir. Har bir o'quvchimiz — bizning faxrimiz va kelajagimiz. Biz bilan birgalikda buyuk istiqbollarni yaratamiz!
+                    </p>
+                    <div class="dqc-author">— Xudoyberdiyeva U.A., Direktor o‘rinbosari , O'qituvchi</div>
+                </div>
+
+                <div class="dir-info-grid">
+                    <div class="dig-card">
+                        <div class="dig-icon">📚</div>
+                        <h4 data-translate="dir_card1_title">Ta'lim yo'nalishi</h4>
+                        <p >Umumta'lim fanlar boyicha ta'lim berish</p>
+                    </div>
+                    <div class="dig-card">
+                        <div class="dig-icon">🤝</div>
+                        <h4 data-translate="dir_card2_title">Hamkorlik</h4>
+                        <p >Ota-onalar, o'qituvchilar bilan hamkorlik</p>
+                    </div>
+                    <div class="dig-card">
+                        <div class="dig-icon">🌟</div>
+                        <h4 data-translate="dir_card3_title">Maqsad</h4>
+                        <p >Har bir o'quvchining iste'dodini ochish va rivojlantirish</p>
+                    </div>
+                    <div class="dig-card">
+                        <div class="dig-icon">📈</div>
+                        <h4 data-translate="dir_card4_title">Yutuqlar</h4>
+                        <p >Respublika olimpiadalarida muntazam g'alaba qozonish</p>
+                    </div>
+                </div>
+                
+                <div class="dir-stats-row">
+                  
+        
+                         <div class="dsr-item">
+                        <span class="dsr-num">25+</span>
+                        <span class="dsr-label" data-translate="dir_years_active">Yil faoliyat</span>
+                    </div>
+                    <div class="dsr-item">
+                        <span class="dsr-num">70+</span>
+                        <span class="dsr-label" data-translate="dir_olympiad">Olimpiada</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+     <!-- DIRECTOR CONTENT -->
+<section class="page-content">
+    <div class="container">
+        <div class="director-layout">
+
+            <!-- Photo Side -->
+            <div class="dir-photo-col">
+                <div class="dir-photo-card">
+                    <div class="dir-photo-wrap">
+                        <img src="images/zauch3.jpg" alt="Direktor">
+                    </div>
+                    <div class="dir-photo-info">
+                        <h2 >Umarova Muqaddas Murodjonovna</h2>
+                        <p >Direktor o‘rinbosari</p>
+                    </div>
+                    <div class="dir-badges">
+                        <div class="dir-badge">
+                            <span class="db-icon">⭐</span>
+                            <div>
+                                <strong>15+</strong>
+                                <span data-translate="stats_years">Yil tajriba</span>
+                            </div>
+                        </div>
+                        <div class="dir-badge">
+                            <span class="db-icon">🎓</span>
+                            <div>
+                                <strong data-translate="dir_edu_level">Oliy</strong>
+                                <span data-translate="dir_edu_label">Ma'lumot</span>
+                            </div>
+                        </div>
+                        <div class="dir-badge">
+                            <span class="db-icon">🏅</span>
+                            <div>
+                                <strong data-translate="dir_honor_level">Faxriy</strong>
+                                <span data-translate="dir_honor_label">O'qituvchi</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="btn-primary" style="width:100%;justify-content:center" data-translate="nav_contact">
+                        Bog'lanish
+                    </a>
+                </div>
+            </div>
+
+            <!-- Info Side -->
+            <div class="dir-info-col">
+                <div class="dir-quote-card">
+                    <div class="dqc-mark">"</div>
+                    <p data-translate="dir_quote">
+                        Aziz o'quvchilar, ota-onalar va hurmatli mehmonlar! Maktabimiz — bu nafaqat bilim olish maskani, balki kelajak avlodning ma'naviy va intellektual shakllanadigan muqaddas dargohidir. Har bir o'quvchimiz — bizning faxrimiz va kelajagimiz. Biz bilan birgalikda buyuk istiqbollarni yaratamiz!
+                    </p>
+                    <div class="dqc-author">— Umarova M.M., Direktor o‘rinbosari</div>
+                </div>
+
+                <div class="dir-info-grid">
+                    <div class="dig-card">
+                        <div class="dig-icon">📚</div>
+                        <h4 data-translate="dir_card1_title">Ta'lim yo'nalishi</h4>
+                        <p >Umumta'lim fanlar boyicha ta'lim berish</p>
+                    </div>
+                    <div class="dig-card">
+                        <div class="dig-icon">🤝</div>
+                        <h4 data-translate="dir_card2_title">Hamkorlik</h4>
+                        <p >Ota-onalar, o'qituvchilar bilan hamkorlik</p>
+                    </div>
+                    <div class="dig-card">
+                        <div class="dig-icon">🌟</div>
+                        <h4 data-translate="dir_card3_title">Maqsad</h4>
+                        <p >Har bir o'quvchining iste'dodini ochish va rivojlantirish</p>
+                    </div>
+                    <div class="dig-card">
+                        <div class="dig-icon">📈</div>
+                        <h4 data-translate="dir_card4_title">Yutuqlar</h4>
+                        <p >Respublika olimpiadalarida muntazam g'alaba qozonish</p>
+                    </div>
+                </div>
+                
+                <div class="dir-stats-row">
+                  
+        
+                         <div class="dsr-item">
+                        <span class="dsr-num">25+</span>
+                        <span class="dsr-label" data-translate="dir_years_active">Yil faoliyat</span>
+                    </div>
+                    <div class="dsr-item">
+                        <span class="dsr-num">70+</span>
+                        <span class="dsr-label" data-translate="dir_olympiad">Olimpiada</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+       <!-- DIRECTOR CONTENT -->
+<section class="page-content">
+    <div class="container">
+        <div class="director-layout">
+
+            <!-- Photo Side -->
+            <div class="dir-photo-col">
+                <div class="dir-photo-card">
+                    <div class="dir-photo-wrap">
+                        <img src="images/zauch4.JPG" alt="Direktor">
+                    </div>
+                    <div class="dir-photo-info">
+                        <h2 >Sharipova E'tiborxon Boxodirovna</h2>
+                        <p >Direktor Maslahatchisi</p>
+                    </div>
+                    <div class="dir-badges">
+                        <div class="dir-badge">
+                            <span class="db-icon">⭐</span>
+                            <div>
+                                <strong>15+</strong>
+                                <span data-translate="stats_years">Yil tajriba</span>
+                            </div>
+                        </div>
+                        <div class="dir-badge">
+                            <span class="db-icon">🎓</span>
+                            <div>
+                                <strong data-translate="dir_edu_level">Oliy</strong>
+                                <span data-translate="dir_edu_label">Ma'lumot</span>
+                            </div>
+                        </div>
+                        <div class="dir-badge">
+                            <span class="db-icon">🏅</span>
+                            <div>
+                                <strong data-translate="dir_honor_level">Faxriy</strong>
+                                <span data-translate="dir_honor_label">O'qituvchi</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="btn-primary" style="width:100%;justify-content:center" data-translate="nav_contact">
+                        Bog'lanish
+                    </a>
+                </div>
+            </div>
+
+            <!-- Info Side -->
+            <div class="dir-info-col">
+                <div class="dir-quote-card">
+                    <div class="dqc-mark">"</div>
+                    <p data-translate="dir_quote">
+                        Aziz o'quvchilar, ota-onalar va hurmatli mehmonlar! Maktabimiz — bu nafaqat bilim olish maskani, balki kelajak avlodning ma'naviy va intellektual shakllanadigan muqaddas dargohidir. Har bir o'quvchimiz — bizning faxrimiz va kelajagimiz. Biz bilan birgalikda buyuk istiqbollarni yaratamiz!
+                    </p>
+                    <div class="dqc-author">— Sharipova E.B, Direktor Maslahatchisi</div>
+                </div>
+
+                <div class="dir-info-grid">
+                    <div class="dig-card">
+                        <div class="dig-icon">📚</div>
+                        <h4 data-translate="dir_card1_title">Ta'lim yo'nalishi</h4>
+                        <p >Umumta'lim fanlar boyicha ta'lim berish</p>
+                    </div>
+                    <div class="dig-card">
+                        <div class="dig-icon">🤝</div>
+                        <h4 data-translate="dir_card2_title">Hamkorlik</h4>
+                        <p >Ota-onalar, o'qituvchilar bilan hamkorlik</p>
+                    </div>
+                    <div class="dig-card">
+                        <div class="dig-icon">🌟</div>
+                        <h4 data-translate="dir_card3_title">Maqsad</h4>
+                        <p >Har bir o'quvchining iste'dodini ochish va rivojlantirish</p>
+                    </div>
+                    <div class="dig-card">
+                        <div class="dig-icon">📈</div>
+                        <h4 data-translate="dir_card4_title">Yutuqlar</h4>
+                        <p >Respublika olimpiadalarida muntazam g'alaba qozonish</p>
+                    </div>
+                </div>
+                
+                <div class="dir-stats-row">
+                  
+        
+                         <div class="dsr-item">
+                        <span class="dsr-num">25+</span>
+                        <span class="dsr-label" data-translate="dir_years_active">Yil faoliyat</span>
+                    </div>
+                    <div class="dsr-item">
+                        <span class="dsr-num">70+</span>
+                        <span class="dsr-label" data-translate="dir_olympiad">Olimpiada</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+<!-- FOOTER -->
+<footer id="footer">
+    <div class="footer-inner">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <img src="images/logo.png" alt="Logo">
+                <div>
+                    <div class="fb-num">153</div>
+                    <div class="fb-txt" data-translate="school_name">Umumta'lim Maktabi</div>
+                </div>
+            </div>
+            <nav class="footer-nav">
+                <a href="director.html" data-translate="nav_director">Direktor</a>
+                <a href="parents.html" data-translate="nav_parents">Ota-onalar</a>
+                <a href="admission.html" data-translate="nav_admission">Qabul</a>
+                <a href="location.html" data-translate="nav_location">Joylashuv</a>
+                <a href="contact.html" data-translate="nav_contact">Bog'lanish</a>
+            </nav>
+            <div class="footer-contacts">
+                <a href="tel:+998711234567">📞 +998 71 123 45 67</a>
+                <a href="mailto:info@153-maktab.uz">✉️ info@153-maktab.uz</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2025 153-Umumta'lim Maktabi</span>
+            <span data-translate="footer_rights">Barcha huquqlar himoyalangan</span>
+        </div>
+    </div>
+</footer>
+
+<!-- LANGUAGE SELECTOR -->
+<div class="lang-selector" id="langSelector">
+    <button class="lang-btn" id="langBtn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+        </svg>
+        <span id="currentLang">UZ</span>
+    </button>
+    <div class="lang-dropdown" id="langDropdown">
+        <button class="lang-option" data-lang="uz">🇺🇿 O'zbek (lotin)</button>
+        <button class="lang-option" data-lang="ru">🇷🇺 Русский</button>
+        <button class="lang-option" data-lang="en">🇬🇧 English</button>
+    </div>
+</div>
+
+<!-- COOKIE CONSENT -->
+<div class="cookie-consent" id="cookieConsent">
+    <div class="cookie-content">
+        <div class="cookie-icon">🍪</div>
+        <div class="cookie-text">
+            <strong data-translate="cookie_title">Cookie fayllaridan foydalanish</strong>
+            <p data-translate="cookie_desc">Biz saytdan foydalanishingizni yaxshilash uchun cookie fayllaridan foydalanamiz.</p>
+        </div>
+    </div>
+    <div class="cookie-actions">
+        <button class="cookie-btn cookie-accept" id="acceptCookie" data-translate="cookie_accept">Qabul qilaman</button>
+        <button class="cookie-btn cookie-decline" id="declineCookie" data-translate="cookie_decline">Rad etish</button>
+    </div>
+</div>
+
+<!-- USER INFO PANEL -->
+<div id="userInfo"></div>
+
+<!-- USER REGISTRATION MODAL -->
+<div class="modal-overlay" id="userRegModal">
+    <div class="modal-reg-content">
+        <div class="modal-reg-header">
+            <h2 data-translate="user_reg_title">Xush kelibsiz!</h2>
+            <p data-translate="user_reg_subtitle">Biz siz haqida bilishni xohlaymiz</p>
+        </div>
+        
+        <form id="userRegForm" onsubmit="registerUser(event)">
+            <div class="form-group">
+                <label data-translate="user_reg_firstname">Ismingiz</label>
+                <input type="text" id="regFirstName" placeholder="Ismingiz" required>
+            </div>
+            
+            <div class="form-group">
+                <label data-translate="user_reg_lastname">Familiyangiz</label>
+                <input type="text" id="regLastName" placeholder="Familiyangiz" required>
+            </div>
+            
+            <div class="form-group">
+                <label data-translate="user_reg_birthyear">Tug'ilgan yili</label>
+                <select id="regBirthYear" required>
+                    <option value="" data-translate="user_reg_select">Tanlang</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="btn-primary" style="width:100%;justify-content:center">
+                <span data-translate="user_reg_submit">Davom etish</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </button>
+        </form>
+        
+        <p class="modal-reg-note" data-translate="user_reg_note">Sizning ma'lumotlaringiz faqat siz uchun saqlanadi</p>
+    </div>
+</div>
+
+<script src="main.js"></script>
+<script src="user.js"></script>
+</body>
+</html>

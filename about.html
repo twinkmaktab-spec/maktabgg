@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O'quv Muassasa Haqida - 153-Umumta'lim Maktabi</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ── ABOUT STYLES ── */
+        .about-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .about-image {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            height: 400px;
+        }
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .about-text h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--text, #111);
+        }
+        .about-text p {
+            color: var(--text-2, #666);
+            line-height: 1.8;
+            margin-bottom: 16px;
+            font-size: 1rem;
+        }
+
+        .about-card {
+            background: linear-gradient(135deg, #1565C0 0%, #1976D2 100%);
+            padding: 40px;
+            border-radius: 16px;
+            margin-top: 40px;
+            box-shadow: 0 12px 32px rgba(21,101,192,0.3);
+        }
+        .about-card h3 {
+            margin: 0 0 16px 0;
+            color: #ffffff;
+            font-size: 1.3rem;
+            font-weight: 800;
+        }
+        .about-card p {
+            margin: 0;
+            color: #ffffff;
+            font-style: italic;
+            line-height: 1.9;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* ── STATS SECTION ── */
+        .stats-section {
+            margin: 60px 0;
+            padding: 40px;
+            background: var(--bg-2, #f5f5f5);
+            border-radius: 16px;
+        }
+        .stats-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 40px;
+            color: var(--text, #111);
+            text-align: center;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+        }
+        .stat-item {
+            background: var(--surface, #fff);
+            padding: 28px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-top: 4px solid #1565C0;
+            transition: all 0.3s;
+        }
+        .stat-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+        .stat-icon {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1565C0;
+            margin-bottom: 8px;
+        }
+        .stat-label {
+            font-size: 0.95rem;
+            color: var(--text-2, #666);
+            font-weight: 600;
+        }
+
+        /* ── FACILITIES SECTION ── */
+        .facilities-section {
+            margin: 60px 0;
+        }
+        .facilities-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 40px;
+            color: var(--text, #111);
+        }
+        .facilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+        .facility-card {
+            background: var(--surface, #fff);
+            padding: 28px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-left: 5px solid #1565C0;
+            transition: all 0.3s;
+        }
+        .facility-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+        .facility-icon {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+        .facility-card h3 {
+            margin: 0 0 12px 0;
+            color: var(--text, #111);
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+        .facility-card p {
+            margin: 0;
+            color: var(--text-2, #666);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .about-wrapper {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .about-image {
+                height: 300px;
+            }
+            .about-text h2 {
+                font-size: 1.5rem;
+            }
+            .stats-title,
+            .facilities-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div id="preloader">
+    <div class="pre-wrap">
+        <div class="pre-logo-ring">
+            <img src="images/logo.png" alt="Logo" class="pre-logo">
+            <svg class="pre-svg" viewBox="0 0 120 120">
+                <circle class="pre-circle" cx="60" cy="60" r="54"/>
+            </svg>
+        </div>
+        <div class="pre-text-wrap">
+            <span class="pre-num">153</span>
+            <span class="pre-dash">—</span>
+            <span class="pre-title" data-translate="school_name">Umumta'lim Maktabi</span>
+        </div>
+        <div class="pre-progress">
+            <div class="pre-progress-fill"></div>
+        </div>
+    </div>
+</div>
+
+<!-- HEADER -->
+<header id="header">
+    <div class="header-inner">
+        <a href="index.html" class="logo-wrap" id="logoWrap">
+            <div class="logo-box">
+                <img src="images/logo.png" alt="Logo">
+            </div>
+            <div class="logo-text">
+                <span class="logo-num">153</span>
+                <span class="logo-sub" data-translate="school_name">Umumta'lim Maktabi</span>
+            </div>
+        </a>
+        <nav class="nav">
+            <a href="index.html" class="nav-item active" data-translate="nav_home">Bosh sahifa</a>
+            <a href="director.html" class="nav-item" data-translate="nav_director">Maktab Administratsiyasi</a>
+            <a href="yangiliklar.html" class="nav-item" data-translate="nav_news">Yangiliklar</a>
+            <a href="about.html" class="nav-item" data-translate="nav_about">O'quv muassasa</a>
+            <a href="location.html" class="nav-item" data-translate="nav_location">Joylashuv</a>
+            <a href="contact.html" class="nav-item nav-cta" data-translate="nav_contact">Bog'lanish</a>
+        </nav>
+        <div class="header-actions">
+            <button class="theme-btn" id="themeBtn" aria-label="Theme">
+                <svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                <svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+            </button>
+            <button class="burger" id="burger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+        <a href="index.html" class="m-nav-item" data-translate="nav_home">Bosh sahifa</a>
+        <a href="about.html" class="m-nav-item active" data-translate="nav_about">O'quv muassasa</a>
+        <a href="director.html" class="m-nav-item" data-translate="nav_director">Maktab Administratsiyasi</a>
+        <a href="yangiliklar.html" class="m-nav-item" data-translate="nav_news">Yangiliklar</a>
+        <a href="location.html" class="m-nav-item" data-translate="nav_location">Joylashuv</a>
+        <a href="contact.html" class="m-nav-item" data-translate="nav_contact">Bog'lanish</a>
+    </div>
+</header>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html" data-translate="nav_home">Bosh sahifa</a>
+            <span>/</span>
+            <span data-translate="nav_about">O'quv muassasa</span>
+        </div>
+        <h1 class="page-hero-title" data-translate="about_title">153-Umumta'lim Maktabi Haqida</h1>
+        <p class="page-hero-desc" data-translate="about_subtitle">Ilm va ma'rifat markazimizdagi ta'lim sifatini saksatlashtirish uchun faoliyat ko'rsatamiz</p>
+    </div>
+</section>
+
+<!-- ABOUT CONTENT -->
+<section class="page-content">
+    <div class="container">
+        <div class="about-wrapper">
+            <div class="about-image">
+                <img src="images/maktab.jpg" alt="Maktab binosi" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Crect fill=%22%23e0e7ff%22 width=%22400%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2224%22 fill=%22%231565C0%22%3EMaktab Binosi%3C/text%3E%3C/svg%3E'">
+            </div>
+            <div class="about-text">
+                <h2 data-translate="about_history_title">Maktabimiz Haqida</h2>
+                <p data-translate="about_history_text1">153-Umumta'lim Maktabi Toshkent shahrida o'rnatilgan erta asos tuladigan ta'lim muassasasi bo'lib, o'zining keng, sharif torixi bilan tanilgan. Maktab o'z ta'lim faoliyatida muasir usul, texnologiya va pedagog mahorati bilan foydalanib, o'quvchilarimiz uchun ta'lim muhitini yaratadi.</p>
+                
+                <p data-translate="about_history_text2">Bugun maktabimizda turli xil bo'limlar, laboratoriyalar va sport zallari mavjud bo'lib, talabalarning ta'lim samaradorligini ta'minlaydi. Biz o'quvchilarning intellektual, jismoniy va axloqiy rivojlanishiga e'tibor qaratib, ularni jamiyatda faol fuqaro bo'lib o'sishga yordam beramiz.</p>
+
+                <p data-translate="about_history_text3">Maktab o'zining yuqori ta'lim standartlari, zamonaviy texnologiyalari va ixtisoslashgan o'qituvchi jamoasi bilan mashhur. Biz o'quvchilarning xloq-e'tiqodi rivojlanishini, ijodiy fikrlashni va mustaqil ishni fosil etish uchun barcha shartlarni yaratib beramiz.</p>
+
+                <div class="about-card">
+                    <h3 data-translate="about_motto">🎯 Maktabning Devizi:</h3>
+                    <p data-translate="about_motto_text">"Bilim bilan ta'limlanish, ta'lim bilan kelajak quriladi. Biz barcha o'quvchilarning bilim va ko'nikma asosida kuchli shaxs bo'lib o'sishlariga xizmat qilamiz."</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- STATISTICS -->
+        <div class="stats-section">
+            <h2 class="stats-title" data-translate="about_stats">Maktab Statistikasi</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-icon">👨‍🎓</span>
+                    <div class="stat-number">1200+</div>
+                    <div class="stat-label" data-translate="about_students">O'quvchilar soni</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">📚</span>
+                    <div class="stat-number">45</div>
+                    <div class="stat-label" data-translate="about_classrooms">Dars xonalari</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">🏢</span>
+                    <div class="stat-number">4</div>
+                    <div class="stat-label" data-translate="about_floors">Etajlar soni</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">👨‍🏫</span>
+                    <div class="stat-number">80+</div>
+                    <div class="stat-label" data-translate="about_teachers">O'qituvchilar</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FACILITIES -->
+        <div class="facilities-section">
+            <h2 class="facilities-title" data-translate="about_facilities">Maktabdagi Qulayliklar</h2>
+            <div class="facilities-grid">
+                <div class="facility-card">
+                    <span class="facility-icon">📜</span>
+                    <h3 data-translate="about_dining">Fan xonalari</h3>
+                    <p data-translate="about_dining_text">Adabyot , Ona tili , Rus tili , Ingliz tili</p>
+                </div>
+                <div class="facility-card">
+                    <span class="facility-icon">📚</span>
+                    <h3 data-translate="about_library">Kutubxona</h3>
+                    <p data-translate="about_library_text">500+ kitobdan iborat maktab kutubxonasi, o'qish xonasi bilan jihozlangan.</p>
+                </div>
+                <div class="facility-card">
+                    <span class="facility-icon">🔬</span>
+                    <h3 data-translate="about_lab">Laboratoriyalar</h3>
+                    <p data-translate="about_lab_text">Fizika, kimyo, biologiya laboratoriyalari zamonaviy asbob-uskunalardan to'liq jihozlangan.</p>
+                </div>
+                <div class="facility-card">
+                    <span class="facility-icon">💻</span>
+                    <h3 data-translate="about_it">Infromatika Xona</h3>
+                    <p data-translate="about_it_text">40+ kompyuter va internet bilan ta'minlangan, informatika darslari olib boriladi.</p>
+                </div>
+                <div class="facility-card">
+                    <span class="facility-icon">⚽</span>
+                    <h3 data-translate="about_gym">Sport Zallari</h3>
+                    <p data-translate="about_gym_text">Katta sport zali, futbol maydoni va turli sport to'plamlari bilan ta'minlanadi.</p>
+                </div>
+                <div class="facility-card">
+                    <span class="facility-icon">🎨</span>
+                    <h3 data-translate="about_art">Xonanda Xonasi</h3>
+                    <p data-translate="about_art_text">Musiqiy va xonanda darslar uchun mo'rtajiz shartlar, grand-pianos va asbob-uskunalar.</p>
+                </div>
+                <div class="facility-card">
+                    <span class="facility-icon">🏫</span>
+                    <h3 data-translate="about_class">Zamonaviy Dars Xonalari</h3>
+                    <p data-translate="about_class_text">Interaktiv doska, proyektor va multimedia texnologiyasiga ega sinflar.</p>
+                </div>
+                <div class="facility-card">
+                    <span class="facility-icon">🚑</span>
+                    <h3 data-translate="about_medical">Tibbiy Xona</h3>
+                    <p data-translate="about_medical_text">Zamonaviy tibbiy xona o'quvchilarning sog'lig'ini kuzatib turadi.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+                           <!-- OLIMP LEADER SECTION -->
+        <section class="olimp-section">
+            <div class="container">
+                <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                    <h2 class="facilities-title" style="margin-bottom: 12px;" data-translate="about_olimp_title">🏅 OLIMP LEADER</h2>
+                    <p style="color: var(--text-2, #666); font-size: 1rem; margin-bottom: 40px;" data-translate="about_olimp_subtitle">Sport va voqea-ta'limning eng yaxshi to'garaki </p>
+                </div>
+
+                <div style="max-width: 900px; margin: 0 auto; margin-bottom: 60px;">
+                    <p style="color: var(--text-2, #666); line-height: 1.9; margin-bottom: 20px; font-size: 1.05rem; text-align: center;" data-translate="about_olimp_desc1">OLIMP LEADER - bu maktabimizning eng mashhur to'garakidir. U o'quvchilarning jismoniy samaradorligi, vatan-sevgisi va to'g'ri tarbiyasiga e'tibor qaratadi.</p>
+                    
+                    <p style="color: var(--text-2, #666); line-height: 1.9; font-size: 1.05rem; text-align: center;" data-translate="about_olimp_desc2">Sport mashqlari, jismoniy tarbiya, harbiy ta'lim va liderlik sifatlarini rivojlantirish bo'yicha darslar olib boriladi.</p>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1000px; margin: 0 auto;">
+                    <div style="background: var(--surface, #fff); padding: 32px 24px; border-radius: 8px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+                        <div style="font-size: 2.5rem; margin-bottom: 12px;">⚽</div>
+                        <h3 style="margin: 0 0 8px 0; font-size: 1rem; font-weight: 700; color: var(--text, #111);" data-translate="about_olimp_sport">Sport</h3>
+                        <p style="margin: 0; font-size: 0.9rem; color: var(--text-2, #666); line-height: 1.5;" data-translate="about_olimp_sport_text">Jismoniy tarbiya va sport mashqlari</p>
+                    </div>
+
+                    <div style="background: var(--surface, #fff); padding: 32px 24px; border-radius: 8px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+                        <div style="font-size: 2.5rem; margin-bottom: 12px;">🎖️</div>
+                        <h3 style="margin: 0 0 8px 0; font-size: 1rem; font-weight: 700; color: var(--text, #111);" data-translate="about_olimp_military">Harbiy Ta'lim</h3>
+                        <p style="margin: 0; font-size: 0.9rem; color: var(--text-2, #666); line-height: 1.5;" data-translate="about_olimp_military_text">O'zini niqob qilish va xavfsizlik</p>
+                    </div>
+
+                    <div style="background: var(--surface, #fff); padding: 32px 24px; border-radius: 8px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+                        <div style="font-size: 2.5rem; margin-bottom: 12px;">⚡</div>
+                        <h3 style="margin: 0 0 8px 0; font-size: 1rem; font-weight: 700; color: var(--text, #111);" data-translate="about_olimp_discipline">Intizom</h3>
+                        <p style="margin: 0; font-size: 0.9rem; color: var(--text-2, #666); line-height: 1.5;" data-translate="about_olimp_discipline_text">Mas'uliyat va nazorat</p>
+                    </div>
+
+                    <div style="background: var(--surface, #fff); padding: 32px 24px; border-radius: 8px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+                        <div style="font-size: 2.5rem; margin-bottom: 12px;">👥</div>
+                        <h3 style="margin: 0 0 8px 0; font-size: 1rem; font-weight: 700; color: var(--text, #111);" data-translate="about_olimp_leadership">Liderlik</h3>
+                        <p style="margin: 0; font-size: 0.9rem; color: var(--text-2, #666); line-height: 1.5;" data-translate="about_olimp_leadership_text">Jamoaviy ishni rivojlantirish</p>
+                    </div>
+                </div>
+
+                <div style="max-width: 700px; margin: 60px auto 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+                    <div style="background: var(--bg-2, #f5f5f5); padding: 28px; border-radius: 8px; text-align: center;">
+                        <div style="font-size: 2.2rem; font-weight: 800; color: #1565C0; margin-bottom: 6px;">350+</div>
+                        <p style="margin: 0; font-size: 0.9rem; color: var(--text-2, #666); font-weight: 600;" data-translate="about_olimp_members">A'zolar soni</p>
+                    </div>
+                    <div style="background: var(--bg-2, #f5f5f5); padding: 28px; border-radius: 8px; text-align: center;">
+                        <div style="font-size: 2.2rem; font-weight: 800; color: #1565C0; margin-bottom: 6px;">12</div>
+                        <p style="margin: 0; font-size: 0.9rem; color: var(--text-2, #666); font-weight: 600;" data-translate="about_olimp_coaches">Murabbiy</p>
+                    </div>
+                    <div style="background: var(--bg-2, #f5f5f5); padding: 28px; border-radius: 8px; text-align: center;">
+                        <div style="font-size: 2.2rem; font-weight: 800; color: #1565C0; margin-bottom: 6px;">5+</div>
+                        <p style="margin: 0; font-size: 0.9rem; color: var(--text-2, #666); font-weight: 600;" data-translate="about_olimp_awards">Respublika darajalari</p>
+                    </div>
+                    <div style="background: var(--bg-2, #f5f5f5); padding: 28px; border-radius: 8px; text-align: center;">
+                        <div style="font-size: 2.2rem; font-weight: 800; color: #1565C0; margin-bottom: 6px;">16+</div>
+                        <p style="margin: 0; font-size: 0.9rem; color: var(--text-2, #666); font-weight: 600;" data-translate="about_olimp_years">Yillik tajriba</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+<!-- FOOTER -->
+<footer id="footer">
+    <div class="footer-inner">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <img src="images/logo.png" alt="Logo">
+                <div>
+                    <div class="fb-num">153</div>
+                    <div class="fb-txt" data-translate="school_name">Umumta'lim Maktabi</div>
+                </div>
+            </div>
+            <nav class="footer-nav">
+                <a href="index.html" data-translate="nav_home">Bosh sahifa</a>
+                <a href="about.html" data-translate="nav_about">O'quv muassasa</a>
+                <a href="director.html" data-translate="nav_director">Direktor</a>
+                <a href="yangiliklar.html" data-translate="nav_news">Yangiliklar</a>
+                <a href="contact.html" data-translate="nav_contact">Bog'lanish</a>
+            </nav>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2024 153-Maktab. <span data-translate="footer_rights">Barcha huquqlar himoyalangan.</span></span>
+            <span>Toshkent shahri</span>
+        </div>
+    </div>
+</footer>
+
+<!-- FLOAT BUTTONS -->
+<a href="https://t.me/maktabb153" target="_blank" class="telegram-float" aria-label="Telegram">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.248-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-.752-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.141.121.099.155.232.171.325.016.093.036.305.02.471z"/></svg>
+    <span>Telegram</span>
+</a>
+
+<button class="back-to-top" id="backToTop" aria-label="Yuqoriga">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<div class="lang-selector" id="langSelector">
+    <button class="lang-btn" id="langBtn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+        <span id="currentLang">UZ</span>
+    </button>
+    <div class="lang-dropdown" id="langDropdown">
+        <button class="lang-option" data-lang="uz">🇺🇿 O'zbek</button>
+        <button class="lang-option" data-lang="ru">🇷🇺 Русский</button>
+        <button class="lang-option" data-lang="en">🇬🇧 English</button>
+    </div>
+</div>
+
+<a href="https://emaktab.uz/" target="_blank" class="emaktab-link">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+    <span>E-Maktab</span>
+</a>
+
+<script src="main.js"></script>
+<script src="user.js"></script>
+
+       
+
+</body>
+</html>

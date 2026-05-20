@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yangiliklar va E'lonlar - 153-Umumta'lim Maktabi</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ── ADMIN FAB ── */
+        .admin-fab {
+            position: fixed;
+            bottom: 180px;
+            right: 24px;
+            z-index: 9999;
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, #1565C0, #1976D2);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.4rem;
+            cursor: pointer;
+            box-shadow: 0 6px 24px rgba(21,101,192,0.45);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        .admin-fab:hover {
+            transform: translateY(-4px) scale(1.08);
+            box-shadow: 0 12px 36px rgba(21,101,192,0.55);
+        }
+
+        /* ── ADMIN MODAL ── */
+        #adminModal {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background: rgba(0,0,0,0.75);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        #adminModal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .admin-modal-box {
+            background: var(--surface, #fff);
+            border-radius: 20px;
+            padding: 36px;
+            width: 90%;
+            max-width: 540px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 24px 80px rgba(0,0,0,0.4);
+            position: relative;
+            animation: slideUpModal 0.3s ease-out;
+        }
+        @keyframes slideUpModal {
+            from { transform: translateY(30px); opacity: 0; }
+            to   { transform: translateY(0);    opacity: 1; }
+        }
+        .admin-modal-close {
+            position: absolute;
+            top: 14px; right: 14px;
+            background: var(--bg-2, #f5f5f5);
+            border: none;
+            width: 34px; height: 34px;
+            border-radius: 50%;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text, #111);
+            transition: all 0.2s;
+        }
+        .admin-modal-close:hover { background: #ff4757; color: white; }
+
+        /* ── FORMS ── */
+        .adm-title {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--text, #111);
+            margin-bottom: 4px;
+        }
+        .adm-sub {
+            font-size: 0.85rem;
+            color: var(--text-3, #888);
+            margin-bottom: 24px;
+        }
+        .adm-field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 14px;
+        }
+        .adm-field label {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--text-2, #333);
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+        }
+        .adm-field input,
+        .adm-field textarea {
+            padding: 11px 14px;
+            border: 1.5px solid var(--border, #ddd);
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text, #111);
+            background: var(--bg-2, #f9f9f9);
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            resize: vertical;
+            width: 100%;
+        }
+        .adm-field input:focus,
+        .adm-field textarea:focus {
+            border-color: #1565C0;
+            background: var(--surface, #fff);
+            box-shadow: 0 0 0 3px rgba(21,101,192,0.12);
+        }
+        .adm-field textarea { min-height: 85px; }
+
+        /* ── LANG TABS ── */
+        .lang-tabs {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 16px;
+            border-bottom: 2px solid var(--border, #ddd);
+        }
+        .lang-tab {
+            padding: 8px 14px;
+            border: none;
+            background: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-3, #888);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+            transition: all 0.2s;
+            border-radius: 6px 6px 0 0;
+        }
+        .lang-tab.active {
+            color: #1565C0;
+            border-bottom-color: #1565C0;
+            background: var(--blue-l, #E3F2FD);
+        }
+        .lang-panel { display: none; }
+        .lang-panel.active { display: block; }
+
+        /* ── IMAGE UPLOAD ── */
+        .img-upload-wrap {
+            border: 2px dashed var(--border, #ddd);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 16px;
+            background: var(--bg-2, #f9f9f9);
+        }
+        .img-upload-wrap:hover {
+            border-color: #1565C0;
+            background: var(--blue-l, #E3F2FD);
+        }
+        .img-upload-wrap span { font-size: 2rem; display: block; margin-bottom: 6px; }
+        .img-upload-wrap p { font-size: 0.82rem; color: var(--text-3, #888); font-weight: 600; }
+        #imgPreview {
+            width: 100%;
+            max-height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+            display: none;
+            margin-bottom: 12px;
+        }
+
+        /* ── BUTTONS ── */
+        .adm-btn {
+            width: 100%;
+            padding: 13px;
+            background: linear-gradient(135deg, #1565C0, #1976D2);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 4px;
+        }
+        .adm-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(21,101,192,0.4); }
+        .adm-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+        .adm-btn-red {
+            width: 100%;
+            padding: 11px;
+            background: transparent;
+            color: #ff4757;
+            border: 1.5px solid #ff4757;
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        .adm-btn-red:hover { background: #ff4757; color: white; }
+
+        /* ── MESSAGES ── */
+        .adm-msg {
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 0.86rem;
+            font-weight: 600;
+            margin-bottom: 14px;
+            display: none;
+        }
+        .adm-msg.err  { background: rgba(211,47,47,0.1);  color: #d32f2f; border: 1px solid rgba(211,47,47,0.2); }
+        .adm-msg.suc  { background: rgba(46,125,50,0.1);  color: #2e7d32; border: 1px solid rgba(46,125,50,0.2); }
+        .adm-msg.show { display: block; }
+
+        /* ── DELETE BUTTON ON CARD ── */
+        .news-card { position: relative; }
+        .news-del-btn {
+            position: absolute;
+            top: 10px; right: 10px;
+            background: rgba(255,71,87,0.92);
+            color: white;
+            border: none;
+            width: 34px; height: 34px;
+            border-radius: 50%;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: all 0.2s;
+            backdrop-filter: blur(4px);
+        }
+        .news-del-btn:hover { background: #d32f2f; transform: scale(1.1); }
+        body.admin-mode .news-del-btn { display: flex; }
+
+        /* ── EMPTY STATE ── */
+        .news-empty {
+            grid-column: 1/-1;
+            text-align: center;
+            padding: 64px 24px;
+            color: var(--text-3, #888);
+        }
+        .news-empty .empty-icon { font-size: 3.5rem; display: block; margin-bottom: 14px; }
+        .news-empty p { font-size: 1rem; }
+
+        /* ── PASSWORD DOTS ── */
+        .pass-dots {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .pass-dot {
+            width: 14px; height: 14px;
+            border-radius: 50%;
+            border: 2px solid var(--border, #ddd);
+            background: transparent;
+            transition: all 0.2s;
+        }
+        .pass-dot.filled {
+            background: #1565C0;
+            border-color: #1565C0;
+        }
+        .pass-numpad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .pass-key {
+            padding: 14px;
+            border: 1.5px solid var(--border, #ddd);
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text, #111);
+            background: var(--bg-2, #f9f9f9);
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+        .pass-key:hover { background: var(--blue-l, #E3F2FD); border-color: #1565C0; color: #1565C0; }
+        .pass-key:active { transform: scale(0.95); }
+        .pass-key.del-key { color: #ff4757; border-color: rgba(255,71,87,0.3); }
+        .pass-key.del-key:hover { background: rgba(255,71,87,0.1); border-color: #ff4757; color: #ff4757; }
+
+        /* ── PROGRESS BAR ── */
+        .upload-bar {
+            width: 100%; height: 4px;
+            background: var(--border, #ddd);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 8px;
+            display: none;
+        }
+        .upload-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #1565C0, #42a5f5);
+            width: 0%;
+            transition: width 0.3s;
+            border-radius: 4px;
+            animation: shimmer 1.5s infinite;
+        }
+        @keyframes shimmer {
+            0%   { opacity: 1; }
+            50%  { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div id="preloader">
+    <div class="pre-wrap">
+        <div class="pre-logo-ring">
+            <img src="images/logo.png" alt="Logo" class="pre-logo">
+            <svg class="pre-svg" viewBox="0 0 120 120">
+                <circle class="pre-circle" cx="60" cy="60" r="54"/>
+            </svg>
+        </div>
+        <div class="pre-text-wrap">
+            <span class="pre-num">153</span>
+            <span class="pre-dash">—</span>
+            <span class="pre-title" data-translate="school_name">Umumta'lim Maktabi</span>
+        </div>
+        <div class="pre-progress">
+            <div class="pre-progress-fill"></div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript -->
+<script>
+    // Preloader 1.5 sekunddan keyin o'chsin
+    setTimeout(() => {
+        document.getElementById('preloader').style.display = 'none';
+    }, 1500);
+</script>
+
+<!-- HEADER -->
+<header id="header">
+    <div class="header-inner">
+        <a href="index.html" class="logo-wrap" id="logoWrap">
+            <div class="logo-box">
+                <img src="images/logo.png" alt="Logo">
+            </div>
+            <div class="logo-text">
+                <span class="logo-num">153</span>
+                <span class="logo-sub" data-translate="school_name">Umumta'lim Maktabi</span>
+            </div>
+        </a>
+        <nav class="nav">
+           <a href="index.html" class="nav-item active" data-translate="nav_home">Bosh sahifa</a>
+            <a href="director.html" class="nav-item" data-translate="nav_director">Maktab Administratsiyasi</a>
+            <a href="yangiliklar.html" class="nav-item" data-translate="nav_news">Yangiliklar</a>
+            <a href="about.html" class="nav-item" data-translate="nav_about">O'quv muassasa</a>
+            <a href="location.html" class="nav-item" data-translate="nav_location">Joylashuv</a>
+            <a href="contact.html" class="nav-item nav-cta" data-translate="nav_contact">Bog'lanish</a>
+        </nav>
+        <div class="header-actions">
+            <button class="theme-btn" id="themeBtn" aria-label="Theme">
+                <svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                <svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+            </button>
+            <button class="burger" id="burger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+       <a href="index.html" class="nav-item active" data-translate="nav_home">Bosh sahifa</a>
+            <a href="director.html" class="nav-item" data-translate="nav_director">Maktab Aministratsiyasi</a>
+            <a href="yangiliklar.html" class="nav-item" data-translate="nav_news">Yangiliklar</a>
+            <a href="about.html" class="nav-item" data-translate="nav_about">O'quv muassasa</a>
+            <a href="location.html" class="nav-item" data-translate="nav_location">Joylashuv</a>
+            <a href="contact.html" class="nav-item nav-cta" data-translate="nav_contact">Bog'lanish</a>
+    </div>
+</header>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="index.html" data-translate="nav_home">Bosh sahifa</a>
+            <span>/</span>
+            <span data-translate="nav_news">Yangiliklar</span>
+        </div>
+        <h1 class="page-hero-title" data-translate="news_page_title">Yangiliklar va E'lonlar</h1>
+        <p class="page-hero-desc" data-translate="news_page_desc">Maktabimiz hayotidagi eng so'nggi voqealar, muhim e'lonlar va tadbirlar bilan tanishing.</p>
+    </div>
+</section>
+
+<!-- ANNOUNCEMENTS -->
+<section class="announcements-section page-content" style="padding-bottom:20px;">
+    <div class="container">
+        <div class="section-title" style="font-size:2rem;" data-translate="news_ann_title">E'lonlar</div>
+        <div class="announcement-grid">
+            <div class="announcement-card">
+                <div class="ann-date"><strong>04</strong><span>Noy</span></div>
+                <div class="ann-content">
+                    <span class="ann-tag urgent" data-translate="ann_tag_urgent">Muhim</span>
+                    <h3 data-translate="ann_1_title">Kuzgi ta'til boshlanishi haqida</h3>
+                    <p data-translate="ann_1_desc">Barcha o'quvchilar va ota-onalar diqqatiga! 4-noyabrdan boshlab barcha sinf o'quvchilari uchun kuzgi ta'til boshlanadi. Darslar 11-noyabrdan davom etadi.</p>
+                </div>
+            </div>
+            <div class="announcement-card">
+                <div class="ann-date"><strong>25</strong><span>Okt</span></div>
+                <div class="ann-content">
+                    <span class="ann-tag" data-translate="ann_tag_meeting">Majlis</span>
+                    <h3 data-translate="ann_2_title">Umummaktab ota-onalar majlisi</h3>
+                    <p data-translate="ann_2_desc">Joriy yilning 25-oktabr kuni soat 14:00 da 1-chorak yakunlariga bag'ishlangan ota-onalar majlisi bo'lib o'tadi.</p>
+                </div>
+            </div>
+            <div class="announcement-card">
+                <div class="ann-date"><strong>20</strong><span>Okt</span></div>
+                <div class="ann-content">
+                    <span class="ann-tag info" data-translate="ann_tag_info">Ma'lumot</span>
+                    <h3 data-translate="ann_3_title">Olimpiada bosqichi</h3>
+                    <p data-translate="ann_3_desc">Maktab bosqichida o'tkaziladigan fan olimpiadalari 20-oktabr kunidan boshlanadi.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- NEWS GRID -->
+<section class="news-section page-content" style="padding-top:20px;">
+    <div class="container">
+        <div class="section-title" style="font-size:2rem;margin-bottom:24px;" data-translate="news_latest_title">So'nggi Yangiliklar</div>
+        <div class="news-grid" id="newsGrid">
+            <div class="news-empty">
+                <span class="empty-icon">📰</span>
+                <p data-translate="news_loading">Yangiliklar yuklanmoqda...</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+    <div class="footer-inner">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <img src="images/logo.png" alt="Logo">
+                <div>
+                    <div class="fb-num">153</div>
+                    <div class="fb-txt" data-translate="school_name">Umumta'lim Maktabi</div>
+                </div>
+            </div>
+            <nav class="footer-nav">
+                <a href="index.html" data-translate="nav_home">Bosh sahifa</a>
+                <a href="director.html" data-translate="nav_director">Direktor</a>
+                <a href="yangiliklar.html" data-translate="nav_news">Yangiliklar</a>
+                <a href="contact.html" data-translate="nav_contact">Bog'lanish</a>
+            </nav>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2024 153-Maktab. <span data-translate="footer_rights">Barcha huquqlar himoyalangan.</span></span>
+            <span>Toshkent shahri</span>
+        </div>
+    </div>
+</footer>
+
+<!-- FLOAT BUTTONS -->
+<a href="https://t.me/maktabb153" target="_blank" class="telegram-float" aria-label="Telegram">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.248-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-.752-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.141.121.099.155.232.171.325.016.093.036.305.02.471z"/></svg>
+    <span>Telegram</span>
+</a>
+
+<button class="back-to-top" id="backToTop" aria-label="Yuqoriga">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<div class="lang-selector" id="langSelector">
+    <button class="lang-btn" id="langBtn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+        <span id="currentLang">UZ</span>
+    </button>
+    <div class="lang-dropdown" id="langDropdown">
+        <button class="lang-option" data-lang="uz">🇺🇿 O'zbek</button>
+        <button class="lang-option" data-lang="ru">🇷🇺 Русский</button>
+        <button class="lang-option" data-lang="en">🇬🇧 English</button>
+    </div>
+</div>
+
+<a href="https://emaktab.uz/" target="_blank" class="emaktab-link">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+    <span>E-Maktab</span>
+</a>
+
+<!-- ADMIN FAB -->
+<button class="admin-fab" id="adminFab">✏️</button>
+
+<!-- ADMIN MODAL -->
+<div id="adminModal">
+    <div class="admin-modal-box">
+        <button class="admin-modal-close" id="adminModalClose">✕</button>
+
+        <!-- PASSWORD SCREEN -->
+        <div id="passScreen">
+            <p class="adm-title" style="text-align:center;">🔐 Admin kirish</p>
+            <p class="adm-sub" style="text-align:center;">Parolni kiriting</p>
+            <div class="adm-msg err" id="passError"></div>
+            <div class="pass-dots">
+                <div class="pass-dot" id="d0"></div>
+                <div class="pass-dot" id="d1"></div>
+                <div class="pass-dot" id="d2"></div>
+                <div class="pass-dot" id="d3"></div>
+                <div class="pass-dot" id="d4"></div>
+                <div class="pass-dot" id="d5"></div>
+            </div>
+            <div class="pass-numpad">
+                <button class="pass-key" data-n="1">1</button>
+                <button class="pass-key" data-n="2">2</button>
+                <button class="pass-key" data-n="3">3</button>
+                <button class="pass-key" data-n="4">4</button>
+                <button class="pass-key" data-n="5">5</button>
+                <button class="pass-key" data-n="6">6</button>
+                <button class="pass-key" data-n="7">7</button>
+                <button class="pass-key" data-n="8">8</button>
+                <button class="pass-key" data-n="9">9</button>
+                <button class="pass-key del-key" data-n="del">⌫</button>
+                <button class="pass-key" data-n="0">0</button>
+                <button class="pass-key" data-n="ok" style="color:#1565C0;">OK</button>
+            </div>
+        </div>
+
+        <!-- POST SCREEN -->
+        <div id="postScreen" style="display:none;">
+            <p class="adm-title">📰 Yangi xabar</p>
+            <p class="adm-sub">Rasm va matnni kiriting</p>
+            <div class="adm-msg suc" id="postSuc"></div>
+            <div class="adm-msg err" id="postErr"></div>
+
+            <form id="postForm">
+                <!-- IMAGE -->
+                <div class="img-upload-wrap" id="imgUploadWrap">
+                    <span>🖼️</span>
+                    <p>Rasm yuklash uchun bosing</p>
+                </div>
+                <input type="file" id="imgInput" accept="image/*" style="display:none;">
+                <img id="imgPreview" src="" alt="">
+                <div class="upload-bar" id="uploadBar">
+                    <div class="upload-bar-fill" id="uploadBarFill"></div>
+                </div>
+
+                <!-- LANG TABS -->
+                <div class="lang-tabs">
+                    <button type="button" class="lang-tab active" data-tab="uz">🇺🇿 UZ</button>
+                    <button type="button" class="lang-tab" data-tab="ru">🇷🇺 RU</button>
+                    <button type="button" class="lang-tab" data-tab="en">🇬🇧 EN</button>
+                </div>
+
+                <div class="lang-panel active" id="tab-uz">
+                    <div class="adm-field">
+                        <label>Sarlavha</label>
+                        <input type="text" id="tUz" placeholder="Yangilik sarlavhasi...">
+                    </div>
+                    <div class="adm-field">
+                        <label>Matn</label>
+                        <textarea id="xUz" placeholder="Yangilik matni..."></textarea>
+                    </div>
+                </div>
+                <div class="lang-panel" id="tab-ru">
+                    <div class="adm-field">
+                        <label>Заголовок</label>
+                        <input type="text" id="tRu" placeholder="Заголовок новости...">
+                    </div>
+                    <div class="adm-field">
+                        <label>Текст</label>
+                        <textarea id="xRu" placeholder="Текст новости..."></textarea>
+                    </div>
+                </div>
+                <div class="lang-panel" id="tab-en">
+                    <div class="adm-field">
+                        <label>Title</label>
+                        <input type="text" id="tEn" placeholder="News title...">
+                    </div>
+                    <div class="adm-field">
+                        <label>Text</label>
+                        <textarea id="xEn" placeholder="News text..."></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="adm-btn" id="pubBtn">🚀 Nashr qilish</button>
+            </form>
+            <button class="adm-btn-red" id="exitAdminBtn">🚪 Chiqish</button>
+        </div>
+
+    </div>
+</div>
+
+<script src="main.js"></script>
+<script type="module" src="user.js"></script>
+<script type="module" src="admin.js"></script>
+
+<script>
+// ============================================
+// ⚠️ PAROLNI SHU YERDA O'ZGARTIRING ⚠️
+// ============================================
+const ADMIN_PASSWORD = "153153";
+
+// ============================================
+// STORAGE KEY
+// ============================================
+const NEWS_KEY = "maktab153_news";
+
+// ============================================
+// STATE
+// ============================================
+let isAdmin     = false;
+let enteredPass = "";
+let allNews     = JSON.parse(localStorage.getItem(NEWS_KEY) || "[]");
+
+// ============================================
+// SECRET ENTRY: логотип 5 раз
+// ============================================
+let tapCount = 0;
+let tapTimer = null;
+document.getElementById('logoWrap').addEventListener('click', function(e) {
+    e.preventDefault();
+    tapCount++;
+    clearTimeout(tapTimer);
+    tapTimer = setTimeout(() => tapCount = 0, 3000);
+    if (tapCount >= 3) {
+        tapCount = 0;
+        openModal();
+    }
+});
+
+// ============================================
+// MODAL OPEN / CLOSE
+// ============================================
+function openModal() {
+    document.getElementById('adminModal').classList.add('show');
+    if (isAdmin) {
+        showPostScreen();
+    } else {
+        showPassScreen();
+    }
+}
+function closeModal() {
+    document.getElementById('adminModal').classList.remove('show');
+}
+
+document.getElementById('adminFab').addEventListener('click', openModal);
+document.getElementById('adminModalClose').addEventListener('click', closeModal);
+document.getElementById('adminModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+});
+
+// ============================================
+// SHOW SCREENS
+// ============================================
+function showPassScreen() {
+    document.getElementById('passScreen').style.display = 'block';
+    document.getElementById('postScreen').style.display = 'none';
+    resetDots();
+    enteredPass = "";
+}
+function showPostScreen() {
+    document.getElementById('passScreen').style.display = 'none';
+    document.getElementById('postScreen').style.display = 'block';
+}
+
+// ============================================
+// NUMPAD
+// ============================================
+function resetDots() {
+    [0,1,2,3,4,5].forEach(i => {
+        document.getElementById('d'+i).classList.remove('filled');
+    });
+    document.getElementById('passError').classList.remove('show');
+}
+function updateDots() {
+    [0,1,2,3,4,5].forEach(i => {
+        const dot = document.getElementById('d'+i);
+        if (i < enteredPass.length) dot.classList.add('filled');
+        else dot.classList.remove('filled');
+    });
+}
+
+document.querySelectorAll('.pass-key').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+        const n = this.dataset.n;
+
+        if (n === 'del') {
+            enteredPass = enteredPass.slice(0, -1);
+            updateDots();
+            return;
+        }
+        if (n === 'ok') {
+            checkPassword();
+            return;
+        }
+        if (enteredPass.length >= 6) return;
+        enteredPass += n;
+        updateDots();
+        if (enteredPass.length === 6) {
+            setTimeout(checkPassword, 200);
+        }
+    });
+});
+
+function checkPassword() {
+    if (enteredPass === ADMIN_PASSWORD) {
+        isAdmin = true;
+        document.body.classList.add('admin-mode');
+        document.getElementById('adminFab').style.display = 'flex';
+        showPostScreen();
+        renderNews();
+    } else {
+        const err = document.getElementById('passError');
+        err.textContent = '❌ Parol noto\'g\'ri! (Неверный пароль)';
+        err.classList.add('show');
+        enteredPass = "";
+        setTimeout(resetDots, 1000);
+    }
+}
+
+// ============================================
+// EXIT ADMIN
+// ============================================
+document.getElementById('exitAdminBtn').addEventListener('click', function() {
+    isAdmin = false;
+    document.body.classList.remove('admin-mode');
+    document.getElementById('adminFab').style.display = 'none';
+    closeModal();
+    renderNews();
+});
+
+// ============================================
+// IMAGE PREVIEW
+// ============================================
+document.getElementById('imgUploadWrap').addEventListener('click', function() {
+    document.getElementById('imgInput').click();
+});
+document.getElementById('imgInput').addEventListener('change', function() {
+    const file = this.files[0];
+    if (!file) return;
+
+    // Show progress animation
+    const bar = document.getElementById('uploadBar');
+    const fill = document.getElementById('uploadBarFill');
+    bar.style.display = 'block';
+    let w = 0;
+    const iv = setInterval(function() {
+        w += 5;
+        fill.style.width = w + '%';
+        if (w >= 100) clearInterval(iv);
+    }, 30);
+
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+        const prev = document.getElementById('imgPreview');
+        prev.src = ev.target.result;
+        prev.style.display = 'block';
+        setTimeout(function() { bar.style.display = 'none'; fill.style.width = '0%'; }, 700);
+    };
+    reader.readAsDataURL(file);
+});
+
+// ============================================
+// LANG TABS
+// ============================================
+document.querySelectorAll('.lang-tab').forEach(function(tab) {
+    tab.addEventListener('click', function() {
+        document.querySelectorAll('.lang-tab').forEach(function(t) { t.classList.remove('active'); });
+        document.querySelectorAll('.lang-panel').forEach(function(p) { p.classList.remove('active'); });
+        tab.classList.add('active');
+        document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+    });
+});
+
+// ============================================
+// PUBLISH NEWS
+// ============================================
+document.getElementById('postForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const imgSrc = document.getElementById('imgPreview').src;
+    const tUz = document.getElementById('tUz').value.trim();
+    const xUz = document.getElementById('xUz').value.trim();
+    const tRu = document.getElementById('tRu').value.trim();
+    const xRu = document.getElementById('xRu').value.trim();
+    const tEn = document.getElementById('tEn').value.trim();
+    const xEn = document.getElementById('xEn').value.trim();
+
+    const suc = document.getElementById('postSuc');
+    const err = document.getElementById('postErr');
+    suc.classList.remove('show');
+    err.classList.remove('show');
+
+    if (!imgSrc || !document.getElementById('imgInput').files[0]) {
+        err.textContent = '❌ Rasm tanlang!';
+        err.classList.add('show');
+        return;
+    }
+    if (!tUz || !xUz) {
+        err.textContent = '❌ O\'zbek tilida sarlavha va matnni kiriting!';
+        err.classList.add('show');
+        return;
+    }
+
+    const btn = document.getElementById('pubBtn');
+    btn.disabled = true;
+    btn.textContent = 'Yuklanmoqda...';
+
+    // Build date strings
+    const now = new Date();
+    const mUz = ["Yanvar","Fevral","Mart","Aprel","May","Iyun","Iyul","Avgust","Sentabr","Oktabr","Noyabr","Dekabr"];
+    const mRu = ["Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь"];
+    const mEn = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    const d = now.getDate();
+    const y = now.getFullYear();
+    const mo = now.getMonth();
+
+    const newsItem = {
+        id: Date.now(),
+        imageUrl: imgSrc,
+        dateStrings: {
+            uz: d + " " + mUz[mo] + ", " + y,
+            ru: d + " " + mRu[mo] + " " + y,
+            en: mEn[mo] + " " + d + ", " + y
+        },
+        uz: { title: tUz, text: xUz },
+        ru: { title: tRu || tUz, text: xRu || xUz },
+        en: { title: tEn || tUz, text: xEn || xUz }
+    };
+
+    // Save to localStorage
+    allNews.unshift(newsItem);
+    localStorage.setItem(NEWS_KEY, JSON.stringify(allNews));
+
+    suc.textContent = '✅ Yangilik muvaffaqiyatli nashr etildi!';
+    suc.classList.add('show');
+
+    // Reset form
+    document.getElementById('postForm').reset();
+    document.getElementById('imgPreview').style.display = 'none';
+    document.getElementById('imgPreview').src = '';
+
+    btn.disabled = false;
+    btn.textContent = '🚀 Nashr qilish';
+
+    renderNews();
+
+    setTimeout(function() {
+        suc.classList.remove('show');
+        closeModal();
+    }, 1800);
+});
+
+// ============================================
+// RENDER NEWS
+// ============================================
+function renderNews() {
+    const grid = document.getElementById('newsGrid');
+    if (!grid) return;
+
+    const lang = localStorage.getItem('language') || 'uz';
+
+    if (allNews.length === 0) {
+        grid.innerHTML = '<div class="news-empty"><span class="empty-icon">📰</span><p>Hozircha yangiliklar yo\'q</p></div>';
+        return;
+    }
+
+    grid.innerHTML = '';
+    allNews.forEach(function(item) {
+        const title   = (item[lang] && item[lang].title) ? item[lang].title : item.uz.title;
+        const text    = (item[lang] && item[lang].text)  ? item[lang].text  : item.uz.text;
+        const dateStr = (item.dateStrings && item.dateStrings[lang]) ? item.dateStrings[lang] : '';
+
+        const card = document.createElement('div');
+        card.className = 'news-card';
+        card.innerHTML =
+            '<button class="news-del-btn" title="O\'chirish">🗑️</button>' +
+            '<div class="news-image"><img src="' + item.imageUrl + '" alt="' + title + '" loading="lazy"></div>' +
+            '<div class="news-content">' +
+                '<div class="news-meta"><span>📅 ' + dateStr + '</span></div>' +
+                '<h3>' + title + '</h3>' +
+                '<p>' + text + '</p>' +
+            '</div>';
+
+        // Delete
+        card.querySelector('.news-del-btn').addEventListener('click', function() {
+            if (!confirm('Bu yangilikni o\'chirish?')) return;
+            allNews = allNews.filter(function(n) { return n.id !== item.id; });
+            localStorage.setItem(NEWS_KEY, JSON.stringify(allNews));
+            renderNews();
+        });
+
+        grid.appendChild(card);
+    });
+}
+
+// ============================================
+// RE-RENDER ON LANG CHANGE
+// ============================================
+document.querySelectorAll('.lang-option').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+        setTimeout(renderNews, 150);
+    });
+});
+
+// ============================================
+// INIT
+// ============================================
+renderNews();
+</script>
+
+</body>
+</html>
