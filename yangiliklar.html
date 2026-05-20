@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="uz" data-theme="dark">
+<html lang="uz" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -352,7 +352,6 @@
         </div>
     </div>
 </div>
-
 <!-- JavaScript -->
 <script>
     // Preloader 1.5 sekunddan keyin o'chsin
@@ -374,9 +373,9 @@
             </div>
         </a>
         <nav class="nav">
-           <a href="index.html" class="nav-item active" data-translate="nav_home">Bosh sahifa</a>
+           <a href="index.html" class="nav-item" data-translate="nav_home">Bosh sahifa</a>
             <a href="director.html" class="nav-item" data-translate="nav_director">Maktab Administratsiyasi</a>
-            <a href="yangiliklar.html" class="nav-item" data-translate="nav_news">Yangiliklar</a>
+            <a href="yangiliklar.html" class="nav-item active" data-translate="nav_news">Yangiliklar</a>
             <a href="about.html" class="nav-item" data-translate="nav_about">O'quv muassasa</a>
             <a href="location.html" class="nav-item" data-translate="nav_location">Joylashuv</a>
             <a href="contact.html" class="nav-item nav-cta" data-translate="nav_contact">Bog'lanish</a>
@@ -392,12 +391,12 @@
         </div>
     </div>
     <div class="mobile-nav" id="mobileNav">
-       <a href="index.html" class="nav-item active" data-translate="nav_home">Bosh sahifa</a>
-            <a href="director.html" class="nav-item" data-translate="nav_director">Maktab Aministratsiyasi</a>
-            <a href="yangiliklar.html" class="nav-item" data-translate="nav_news">Yangiliklar</a>
-            <a href="about.html" class="nav-item" data-translate="nav_about">O'quv muassasa</a>
-            <a href="location.html" class="nav-item" data-translate="nav_location">Joylashuv</a>
-            <a href="contact.html" class="nav-item nav-cta" data-translate="nav_contact">Bog'lanish</a>
+       <a href="index.html" class="nav-item" data-translate="nav_home">Bosh sahifa</a>
+        <a href="director.html" class="nav-item" data-translate="nav_director">Maktab Aministratsiyasi</a>
+        <a href="yangiliklar.html" class="nav-item active" data-translate="nav_news">Yangiliklar</a>
+        <a href="about.html" class="nav-item" data-translate="nav_about">O'quv muassasa</a>
+        <a href="location.html" class="nav-item" data-translate="nav_location">Joylashuv</a>
+        <a href="contact.html" class="nav-item nav-cta" data-translate="nav_contact">Bog'lanish</a>
     </div>
 </header>
 
@@ -614,30 +613,85 @@
     </div>
 </div>
 
-<script src="main.js"></script>
+<!-- Scripts -->
+<script type="module" src="main.js"></script>
 <script type="module" src="user.js"></script>
 <script type="module" src="admin.js"></script>
 
 <script>
 // ============================================
-// ⚠️ PAROLNI SHU YERDA O'ZGARTIRING ⚠️
+// ⚠️ НАСТРОЙКИ - ЗАПОЛНИТЕ СВОИ ДАННЫЕ ⚠️
 // ============================================
-const ADMIN_PASSWORD = "153153";
+const ADMIN_PASSWORD = "153153"; // Ваш пароль
 
-// ============================================
-// STORAGE KEY
-// ============================================
-const NEWS_KEY = "maktab153_news";
+// JSONBin настройки (получите на jsonbin.io)
+const JSONBIN_BIN_ID = "6a0d7f626877513b27a13bf2"; // ⚠️ ЗАМЕНИТЕ!
+const JSONBIN_API_KEY = "$2a$10$HNWMk.AfyFO8dcSqAFhc7.ng/MP9QeYWezS2d8GSI87gBVHFdJBni"; // ⚠️ ЗАМЕНИТЕ!
+
+const JSONBIN_URL = `https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`;
 
 // ============================================
 // STATE
 // ============================================
-let isAdmin     = false;
+let isAdmin = false;
 let enteredPass = "";
-let allNews     = JSON.parse(localStorage.getItem(NEWS_KEY) || "[]");
+let allNews = [];
+let compressedImageBase64 = "";
 
 // ============================================
-// SECRET ENTRY: логотип 5 раз
+// ЗАГРУЗКА НОВОСТЕЙ ИЗ ОБЛАКА
+// ============================================
+async function loadNews() {
+    const grid = document.getElementById('newsGrid');
+    if (grid) {
+        grid.innerHTML = '<div class="news-empty"><span class="empty-icon">⏳</span><p>Yangiliklar yuklanmoqda...</p></div>';
+    }
+
+    try {
+        const response = await fetch(JSONBIN_URL + '/latest', {
+            method: 'GET',
+            headers: {
+                'X-Master-Key': JSONBIN_API_KEY
+            }
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            allNews = data.record || [];
+            renderNews();
+        } else {
+            console.error('Ошибка загрузки:', response.status);
+            renderNews();
+        }
+    } catch (error) {
+        console.error('Ошибка сети:', error);
+        renderNews();
+    }
+}
+
+// ============================================
+// СОХРАНЕНИЕ НОВОСТЕЙ В ОБЛАКО
+// ============================================
+async function saveNews() {
+    try {
+        const response = await fetch(JSONBIN_URL, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Master-Key': JSONBIN_API_KEY
+            },
+            body: JSON.stringify(allNews)
+        });
+
+        return response.ok;
+    } catch (error) {
+        console.error('Ошибка сохранения:', error);
+        return false;
+    }
+}
+
+// ============================================
+// СЕКРЕТНЫЙ ВХОД: 3 клика по логотипу
 // ============================================
 let tapCount = 0;
 let tapTimer = null;
@@ -663,6 +717,7 @@ function openModal() {
         showPassScreen();
     }
 }
+
 function closeModal() {
     document.getElementById('adminModal').classList.remove('show');
 }
@@ -682,6 +737,7 @@ function showPassScreen() {
     resetDots();
     enteredPass = "";
 }
+
 function showPostScreen() {
     document.getElementById('passScreen').style.display = 'none';
     document.getElementById('postScreen').style.display = 'block';
@@ -691,19 +747,21 @@ function showPostScreen() {
 // NUMPAD
 // ============================================
 function resetDots() {
-    [0,1,2,3,4,5].forEach(i => {
+    for (let i = 0; i < 6; i++) {
         document.getElementById('d'+i).classList.remove('filled');
-    });
+    }
     document.getElementById('passError').classList.remove('show');
 }
+
 function updateDots() {
-    [0,1,2,3,4,5].forEach(i => {
+    for (let i = 0; i < 6; i++) {
         const dot = document.getElementById('d'+i);
         if (i < enteredPass.length) dot.classList.add('filled');
         else dot.classList.remove('filled');
-    });
+    }
 }
 
+let isChecking = false;
 document.querySelectorAll('.pass-key').forEach(function(btn) {
     btn.addEventListener('click', function() {
         const n = this.dataset.n;
@@ -714,14 +772,16 @@ document.querySelectorAll('.pass-key').forEach(function(btn) {
             return;
         }
         if (n === 'ok') {
-            checkPassword();
+            if (!isChecking) checkPassword();
             return;
         }
         if (enteredPass.length >= 6) return;
         enteredPass += n;
         updateDots();
-        if (enteredPass.length === 6) {
-            setTimeout(checkPassword, 200);
+        
+        if (enteredPass.length === 6 && !isChecking) {
+            isChecking = true;
+            setTimeout(() => { checkPassword(); isChecking = false; }, 200);
         }
     });
 });
@@ -754,32 +814,51 @@ document.getElementById('exitAdminBtn').addEventListener('click', function() {
 });
 
 // ============================================
-// IMAGE PREVIEW
+// IMAGE UPLOAD & COMPRESSION
 // ============================================
 document.getElementById('imgUploadWrap').addEventListener('click', function() {
     document.getElementById('imgInput').click();
 });
-document.getElementById('imgInput').addEventListener('change', function() {
-    const file = this.files[0];
+
+document.getElementById('imgInput').addEventListener('change', function(e) {
+    const file = e.target.files[0];
     if (!file) return;
 
-    // Show progress animation
     const bar = document.getElementById('uploadBar');
     const fill = document.getElementById('uploadBarFill');
     bar.style.display = 'block';
     let w = 0;
     const iv = setInterval(function() {
-        w += 5;
+        w += 10;
         fill.style.width = w + '%';
         if (w >= 100) clearInterval(iv);
-    }, 30);
+    }, 50);
 
     const reader = new FileReader();
-    reader.onload = function(ev) {
-        const prev = document.getElementById('imgPreview');
-        prev.src = ev.target.result;
-        prev.style.display = 'block';
-        setTimeout(function() { bar.style.display = 'none'; fill.style.width = '0%'; }, 700);
+    reader.onload = function(event) {
+        const img = new Image();
+        img.src = event.target.result;
+        img.onload = function() {
+            const canvas = document.createElement('canvas');
+            const MAX_WIDTH = 800;
+            let scaleSize = MAX_WIDTH / img.width;
+            
+            if (scaleSize > 1) scaleSize = 1;
+
+            canvas.width = img.width * scaleSize;
+            canvas.height = img.height * scaleSize;
+
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+            compressedImageBase64 = canvas.toDataURL('image/jpeg', 0.6);
+
+            const prev = document.getElementById('imgPreview');
+            prev.src = compressedImageBase64;
+            prev.style.display = 'block';
+            
+            setTimeout(function() { bar.style.display = 'none'; fill.style.width = '0%'; }, 500);
+        }
     };
     reader.readAsDataURL(file);
 });
@@ -797,12 +876,11 @@ document.querySelectorAll('.lang-tab').forEach(function(tab) {
 });
 
 // ============================================
-// PUBLISH NEWS
+// PUBLISH NEWS (АВТОМАТИЧЕСКОЕ СОХРАНЕНИЕ)
 // ============================================
-document.getElementById('postForm').addEventListener('submit', function(e) {
+document.getElementById('postForm').addEventListener('submit', async function(e) {
     e.preventDefault();
 
-    const imgSrc = document.getElementById('imgPreview').src;
     const tUz = document.getElementById('tUz').value.trim();
     const xUz = document.getElementById('xUz').value.trim();
     const tRu = document.getElementById('tRu').value.trim();
@@ -815,7 +893,7 @@ document.getElementById('postForm').addEventListener('submit', function(e) {
     suc.classList.remove('show');
     err.classList.remove('show');
 
-    if (!imgSrc || !document.getElementById('imgInput').files[0]) {
+    if (!compressedImageBase64) {
         err.textContent = '❌ Rasm tanlang!';
         err.classList.add('show');
         return;
@@ -828,12 +906,11 @@ document.getElementById('postForm').addEventListener('submit', function(e) {
 
     const btn = document.getElementById('pubBtn');
     btn.disabled = true;
-    btn.textContent = 'Yuklanmoqda...';
+    btn.textContent = '⏳ Saqlanmoqda...';
 
-    // Build date strings
     const now = new Date();
     const mUz = ["Yanvar","Fevral","Mart","Aprel","May","Iyun","Iyul","Avgust","Sentabr","Oktabr","Noyabr","Dekabr"];
-    const mRu = ["Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь"];
+    const mRu = ["Января","Февраля","Марта","Апреля","Мая","Июня","Июля","Августа","Сентября","Октября","Ноября","Декабря"];
     const mEn = ["January","February","March","April","May","June","July","August","September","October","November","December"];
     const d = now.getDate();
     const y = now.getFullYear();
@@ -841,7 +918,7 @@ document.getElementById('postForm').addEventListener('submit', function(e) {
 
     const newsItem = {
         id: Date.now(),
-        imageUrl: imgSrc,
+        imageUrl: compressedImageBase64,
         dateStrings: {
             uz: d + " " + mUz[mo] + ", " + y,
             ru: d + " " + mRu[mo] + " " + y,
@@ -852,27 +929,35 @@ document.getElementById('postForm').addEventListener('submit', function(e) {
         en: { title: tEn || tUz, text: xEn || xUz }
     };
 
-    // Save to localStorage
     allNews.unshift(newsItem);
-    localStorage.setItem(NEWS_KEY, JSON.stringify(allNews));
 
-    suc.textContent = '✅ Yangilik muvaffaqiyatli nashr etildi!';
-    suc.classList.add('show');
+    // 🚀 АВТОМАТИЧЕСКОЕ СОХРАНЕНИЕ В ОБЛАКО
+    const saved = await saveNews();
 
-    // Reset form
-    document.getElementById('postForm').reset();
-    document.getElementById('imgPreview').style.display = 'none';
-    document.getElementById('imgPreview').src = '';
+    if (saved) {
+        suc.textContent = '✅ Yangilik muvaffaqiyatli nashr etildi! Barcha foydalanuvchilar ko\'rishlari mumkin.';
+        suc.classList.add('show');
+
+        // Сбрасываем форму
+        document.getElementById('postForm').reset();
+        document.getElementById('imgPreview').style.display = 'none';
+        document.getElementById('imgPreview').src = '';
+        compressedImageBase64 = "";
+
+        renderNews();
+
+        setTimeout(function() {
+            suc.classList.remove('show');
+            closeModal();
+        }, 2000);
+    } else {
+        allNews.shift();
+        err.textContent = '❌ Xatolik yuz berdi! Internet ulanishini tekshiring.';
+        err.classList.add('show');
+    }
 
     btn.disabled = false;
     btn.textContent = '🚀 Nashr qilish';
-
-    renderNews();
-
-    setTimeout(function() {
-        suc.classList.remove('show');
-        closeModal();
-    }, 1800);
 });
 
 // ============================================
@@ -906,12 +991,19 @@ function renderNews() {
                 '<p>' + text + '</p>' +
             '</div>';
 
-        // Delete
-        card.querySelector('.news-del-btn').addEventListener('click', function() {
-            if (!confirm('Bu yangilikni o\'chirish?')) return;
+        // УДАЛЕНИЕ НОВОСТИ (АВТОМАТИЧЕСКОЕ)
+        card.querySelector('.news-del-btn').addEventListener('click', async function() {
+            if (!confirm('Bu yangilikni o\'chirishni xohlaysizmi?')) return;
+            
             allNews = allNews.filter(function(n) { return n.id !== item.id; });
-            localStorage.setItem(NEWS_KEY, JSON.stringify(allNews));
-            renderNews();
+            
+            const deleted = await saveNews();
+            if (deleted) {
+                renderNews();
+            } else {
+                alert('Xatolik yuz berdi!');
+                await loadNews();
+            }
         });
 
         grid.appendChild(card);
@@ -928,9 +1020,12 @@ document.querySelectorAll('.lang-option').forEach(function(btn) {
 });
 
 // ============================================
-// INIT
+// INIT - Загружаем новости при старте
 // ============================================
-renderNews();
+loadNews();
+
+// Автообновление каждые 30 секунд
+setInterval(loadNews, 30000);
 </script>
 
 </body>
