@@ -91,7 +91,7 @@ function logoutUser() {
     try {
         localStorage.removeItem('user');
         console.log('User logged out');
-        location.reload();
+        checkUserRegistration();
     } catch (error) {
         console.error('Error logging out:', error);
     }
